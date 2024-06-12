@@ -1,0 +1,17 @@
+{% extends 'newsletters/base.html' %}
+{% block content%}
+<div class="col-12">
+    <div class="card mb-4 box-shadow">
+        <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Удалить статью {{object.title}}</h4>
+        </div>
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-lg btn-block btn-outline-danger">Подтвердить</button>
+                <a href="{% url 'blog:articles' %}" type="button" class="btn btn-warning">Отмена</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

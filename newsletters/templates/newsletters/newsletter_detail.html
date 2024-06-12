@@ -1,0 +1,18 @@
+{% extends 'newsletters/base.html' %}
+{% block content%}
+<div class="card-body">
+    <h1 class="card-title pricing-card-title">{{ object.title }}</h1>
+    <ul>
+        <li>{{ object.description | truncatechars:100 }}</li>
+        <li>Периодичность: {{ object.periodicity }}</li>
+        <li>Начало рассылки: {{ object.start_date }}</li>
+        <li>Статус: {{ object.status }}</li>
+    </ul>
+    {% if perms.newsletters.can_manage_newsletter_status or user == newsletters.owner %}
+    <a href="{% url 'newsletter:newsletter_update' object.pk %}" type="button" class="btn btn-lg btn-block btn-outline-dark">Редактировать</a>
+    {% endif %}
+    <a href="{% url 'newsletter:newsletter_delete' object.pk %}" type="button"
+       class="btn btn-lg btn-block btn-outline-danger">Удалить</a>
+    <a href="{% url 'newsletter:newsletter_list' %}" type="button" class="btn btn-lg btn-block btn-outline-success">Отмена</a>
+</div>
+{% endblock %}

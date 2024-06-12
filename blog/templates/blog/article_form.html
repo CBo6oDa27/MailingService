@@ -1,0 +1,23 @@
+{% extends 'newsletters/base.html' %}
+{% block content%}
+<div class="col-12">
+    <div class="card mb-4 box-shadow">
+        <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Загрузите статью</h4>
+        </div>
+        <div class="card-body">
+            <form method="post" enctype="multipart/form-data">
+                {{form.as_p}}
+                {% csrf_token %}
+                <button type="submit" class="btn btn-lg btn-block btn-outline-primary">
+                    {% if object %}
+                    Обновить
+                    {% else %}
+                    Создать
+                    {% endif %}
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'newsletters/base.html' %}
+{% block content%}
+<div class="card-body">
+    <h1 class="card-title pricing-card-title">{{ object.title }}</h1>
+    <ul>
+        <li>{{ object.content | truncatechars:100 }}</li>
+    </ul>
+    {% if perms.article.change_article%}
+    <a href="{% url 'blog:update_article' object.pk %}" type="button"
+       class="btn btn-lg btn-block btn-outline-primary">Редактировать</a>
+    {% endif %}
+    {% if perms.article.delete_article%}
+    <a href="{% url 'blog:delete_article' object.pk %}" type="button"
+       class="btn btn-lg btn-block btn-danger">Удалить</a>
+    {% endif %}
+    <a href="{% url 'blog:articles' %}" type="button" class="btn btn-lg btn-block btn-outline-success">Назад к списку
+        статей</a>
+</div>
+{% endblock %}
